@@ -23,7 +23,7 @@ const FilterSummary: React.FC<FilterSummaryProps> = ({filters, setFilters, selec
     return (
         <ul className={styles.ul}>
             {selectedManufacturers.map(item => (
-                <li key={item} className={styles.li}>
+                <li key={item}>
                     {item}<span className={styles.close} onClick={() => handleDeselectManufacturers(item)}>X</span>
                 </li>
             ))}

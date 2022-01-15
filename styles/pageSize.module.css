@@ -1,0 +1,14 @@
+.pageSize {
+    width: 50px;
+    border: 1px solid #ddd;
+    background-color: #f6f6f6;
+    font-size: 14px;
+    color: black;
+    display: inline-block;
+    margin: auto 4px;
+    text-align: center;
+}
+.pageSizeWrapper {
+    display: inline-block;
+    margin: 0 0 0 20px;
+}
