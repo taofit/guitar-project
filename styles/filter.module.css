@@ -1,0 +1,19 @@
+.columnLeft {
+    flex: 20%;
+}
+.filters h3 {
+    font-size: 1rem;
+}
+.filters ul {
+    list-style: none;
+    padding-inline-start: 0;
+}
+.filters ul li {
+    padding: 3px 0;
+}
+.filters ul li label {
+    cursor: pointer;
+}
+.filters ul li:hover {
+    background-color: #eee;
+}

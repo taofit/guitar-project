@@ -1,19 +1,23 @@
 import Image from 'next/image'
 import styles from "../styles/Home.module.css";
-import {Article} from "../pages";
+import {Article, Manufacturer} from "../pages";
 import FilterSummary from "./filterSummary";
+import React from "react";
 
-interface ProductListProps {
+interface ArticleListProps {
     articles: Article[],
     selectedManufacturers: string[];
+    filters: Manufacturer[];
+    setFilters: (manufacturers: Manufacturer[]) => void;
 }
 
-const ProductList:React.FC<ProductListProps> = ({articles, selectedManufacturers}) => {
+const ArticleList:React.FC<ArticleListProps> = ({articles, filters, setFilters, selectedManufacturers}) => {
     const size = "300";
+
     return (
         <>
             <main className={`${styles.main} ${styles.columnRight}`}>
-                <FilterSummary filters={selectedManufacturers} />
+                <FilterSummary selectedManufacturers={selectedManufacturers} filters={filters} setFilters={setFilters} />
                 <ul className={styles.grid}>
                     {articles.map((item: Article) => (
                         <li className={styles.li} key={item.id}>
@@ -26,5 +30,5 @@ const ProductList:React.FC<ProductListProps> = ({articles, selectedManufacturers
     );
 };
 
-export default ProductList;
+export default ArticleList;
 

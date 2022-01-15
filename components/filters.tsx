@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/filter.module.css";
 import {Manufacturer} from "../pages";
 import React from "react";
 import {ChangeEvent} from "react";
@@ -20,10 +20,15 @@ const Filters:React.FC<ManufacturersListProps> = ({filters, setFilters}) => {
 
     return (
         <section className={`${styles.filters} ${styles.columnLeft}`}>
-            <h3 className={styles.title}>Filters</h3>
+            <h3>Filters</h3>
             <ul>
                 {filters.map((item) => (
-                    <li key={item.name}><input type={"checkbox"} name={item.name} value={item.name} onChange={handleCheckBoxChecked}/>{item.name}</li>
+                    <li key={item.name} className={styles.li}>
+                        <label>
+                            <input type={"checkbox"} name={item.name} value={item.name} checked={item.isSelected} onChange={handleCheckBoxChecked} />
+                            {item.name}
+                        </label>
+                    </li>
                 ))}
             </ul>
         </section>

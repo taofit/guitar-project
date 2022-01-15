@@ -1,15 +1,30 @@
 import styles from '../styles/filterSummary.module.css';
+import {Manufacturer} from "../pages";
 
 interface FilterSummaryProps {
-    filters: string[];
+    filters: Manufacturer[];
+    setFilters: (manufacturers: Manufacturer[]) => void;
+    selectedManufacturers: string[];
 }
 
-const FilterSummary: React.FC<FilterSummaryProps> = ({filters}) => {
+const FilterSummary: React.FC<FilterSummaryProps> = ({filters, setFilters, selectedManufacturers}) => {
+    const handleDeselectManufacturers = (manufacturer: string) => {
+        const filteredManufacturers = selectedManufacturers.filter((item) => item !== manufacturer);
+        filters.forEach((filter) => {
+            if (filteredManufacturers.includes(filter.name)) {
+                filter.isSelected = true;
+            } else {
+                filter.isSelected = false;
+            }
+        });
+        setFilters([...filters]);
+    };
+
     return (
         <ul className={styles.ul}>
-            {filters.map(item => (
+            {selectedManufacturers.map(item => (
                 <li key={item} className={styles.li}>
-                    {item}<span className={styles.close}>X</span>
+                    {item}<span className={styles.close} onClick={() => handleDeselectManufacturers(item)}>X</span>
                 </li>
             ))}
         </ul>

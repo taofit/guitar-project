@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import ProductList from "../components/productList";
+import ArticleList from "../components/articleList";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Filters from '../components/filters';
 import React from "react";
-import FilterSummary from "../components/filterSummary";
 
 type Image = {
     "type": string;
@@ -56,13 +55,10 @@ const Home: (props: PropsInterface) => JSX.Element = (props: PropsInterface) => 
     return (
         <div className={styles.container}>
             <Header/>
-            <h3 className={styles.title}>
-                Welcome to Guitar store!
-            </h3>
+            <h3 className={styles.title}>Welcome to Guitar store!</h3>
             <div className={styles.row}>
                 <Filters setFilters={setFilters} filters={filters} />
-                {/*<FilterSummary filters={selectedManufacturers} />*/}
-                <ProductList articles={articles} selectedManufacturers={selectedManufacturers} />
+                <ArticleList articles={articles} selectedManufacturers={selectedManufacturers} setFilters={setFilters} filters={filters} />
             </div>
             <Footer/>
         </div>
