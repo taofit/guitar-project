@@ -1,58 +1,10 @@
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import React from "react";
+import styles from "../styles/home.module.css";
 import ArticleListWrapper from "../components/articleListWrapper";
 import Footer from "../components/footer";
 import Header from "../components/header";
-import Filters from '../components/filters';
-import React from "react";
-
-type Image = {
-    "type": string;
-    "file": string;
-    "width": string;
-    "height": string;
-    "exists": boolean;
-}
-
-type Price = {
-    "primary": {
-        "raw": string,
-        "formatted": string,
-    },
-    "secondary": {
-        "formatted": boolean
-    },
-    "currencyCode": string
-}
-
-type text = {
-    "title": string,
-    "subheadline": string,
-    "cleanText": string,
-    "features": string[],
-    "featuresClean": string[]
-}
-
-export type Manufacturer = {
-    name: string;
-    count: string;
-    isSelected: boolean;
-    isManufacturer: boolean;
-}
-
-export type Article = {
-    id: number;
-    name: string;
-    manufacturer: string;
-    availability: object;
-    rank: object;
-    price: Price;
-    isReorderable: boolean;
-    rating: object;
-    text: text;
-    manufacturerData: object;
-    image: Image;
-}
+import Filters from "../components/filters";
+import { Manufacturer, Article } from '../types/types';
 
 export interface PropsInterface {
     manufacturers: Manufacturer[];
@@ -64,9 +16,15 @@ const Home: (props: PropsInterface) => JSX.Element = (props: PropsInterface) => 
     const [articles, setArticles] = React.useState<Article[]>([]);
     const [selectedManufacturers, setSelectedManufacturers] = React.useState<string[]>([]);
 
-    React.useEffect(() => {
+    const filterManufacturers = () => {
         const manufacturers = filters.filter((item) => item.isSelected).map((item) => item.name);
         setSelectedManufacturers(manufacturers);
+
+        return manufacturers;
+    };
+
+    const filterArticles = () => {
+        const manufacturers = filterManufacturers();
         let filteredArticles;
         if (manufacturers.length > 0) {
             filteredArticles = props.articles.filter((item) => manufacturers.includes(item.manufacturer));
@@ -74,6 +32,10 @@ const Home: (props: PropsInterface) => JSX.Element = (props: PropsInterface) => 
             filteredArticles = props.articles;
         }
         setArticles(filteredArticles);
+    };
+
+    React.useEffect(() => {
+        filterArticles();
     }, [filters]);
 
     return (
@@ -92,7 +54,7 @@ const Home: (props: PropsInterface) => JSX.Element = (props: PropsInterface) => 
             <Footer/>
         </div>
     )
-}
+};
 
 export default Home;
 
@@ -103,4 +65,4 @@ export async function getStaticProps() {
     return {
         props: data
     }
-}
+};

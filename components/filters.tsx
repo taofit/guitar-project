@@ -1,5 +1,5 @@
 import styles from "../styles/filter.module.css";
-import {Manufacturer} from "../pages";
+import {Manufacturer} from "../types/types";
 import React from "react";
 import {ChangeEvent} from "react";
 
@@ -8,7 +8,7 @@ interface ManufacturersListProps {
     setFilters: (manufacturers: Manufacturer[]) => void;
 }
 
-const Filters:React.FC<ManufacturersListProps> = ({filters, setFilters}) => {
+const Filters: ({filters, setFilters}: ManufacturersListProps) => JSX.Element = ({filters, setFilters}) => {
     const handleCheckBoxChecked = (event: ChangeEvent<HTMLInputElement>) => {
         filters.forEach((filter) => {
             if (filter.name === event.target.value) {
@@ -34,6 +34,7 @@ const Filters:React.FC<ManufacturersListProps> = ({filters, setFilters}) => {
         </section>
     );
 };
+
 export default Filters;
 
 

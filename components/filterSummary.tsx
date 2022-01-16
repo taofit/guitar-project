@@ -1,5 +1,5 @@
 import styles from '../styles/filterSummary.module.css';
-import {Manufacturer} from "../pages";
+import {Manufacturer} from "../types/types";
 
 interface FilterSummaryProps {
     filters: Manufacturer[];
@@ -7,7 +7,8 @@ interface FilterSummaryProps {
     selectedManufacturers: string[];
 }
 
-const FilterSummary: React.FC<FilterSummaryProps> = ({filters, setFilters, selectedManufacturers}) => {
+const FilterSummary: ({filters, setFilters, selectedManufacturers}: FilterSummaryProps) => JSX.Element
+    = ({filters, setFilters, selectedManufacturers}) => {
     const handleDeselectManufacturers = (manufacturer: string) => {
         const filteredManufacturers = selectedManufacturers.filter((item) => item !== manufacturer);
         filters.forEach((filter) => {

@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import {Article, Manufacturer} from "../pages";
+import {Article, Manufacturer} from "../types/types";
 import FilterSummary from "./filterSummary";
 import React, {useEffect, useState} from "react";
 import Pagination from "./pagination";
@@ -14,7 +14,8 @@ interface ArticleListProps {
 }
 export const sizeOptions = [12, 20, 50, 100];
 
-const ArticleListWrapper:React.FC<ArticleListProps> = ({articles, filters, setFilters, selectedManufacturers}) => {
+const ArticleListWrapper: ({articles, selectedManufacturers, filters, setFilters}: ArticleListProps) => JSX.Element
+    = ({articles, filters, setFilters, selectedManufacturers}) => {
     const [articlesInCurrentPage, setArticlesInCurrentPage] = useState<Article[]>([]);
     const [pageSize, setPageSize] = useState<number>(sizeOptions[0]);
     const size = "300";

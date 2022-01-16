@@ -7,7 +7,7 @@ interface PageSizeProps {
     setPageSize: (size: number) => void;
 }
 
-const PageSize:React.FC<PageSizeProps> = ({pageSize, setPageSize}) => {
+const PageSize: ({pageSize, setPageSize}: PageSizeProps) => JSX.Element = ({pageSize, setPageSize}) => {
     const handleSizeChange = (size: string) => {
         setPageSize(Number.parseInt(size));
     }
