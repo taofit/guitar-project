@@ -17,7 +17,7 @@ const PageSize: ({pageSize, setPageSize}: PageSizeProps) => JSX.Element = ({page
             <span>Show</span>
             <select className={styles.pageSize} value={pageSize} onChange={({ target: { value } }) => handleSizeChange(value)}>
                 {sizeOptions.map((option) => (
-                    <option value={option}>
+                    <option value={option} key={option}>
                         {option}
                     </option>
                 ))}

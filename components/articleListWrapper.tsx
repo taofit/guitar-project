@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/home.module.css";
 import {Article, Manufacturer} from "../types/types";
 import FilterSummary from "./filterSummary";
 import React, {useEffect, useState} from "react";
