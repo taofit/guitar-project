@@ -13,6 +13,7 @@ interface ArticleListProps {
     setFilters: (manufacturers: Manufacturer[]) => void;
 }
 export const sizeOptions = [12, 20, 50, 100];
+export const firstPage = 1;
 
 const ArticleListWrapper: ({articles, selectedManufacturers, filters, setFilters}: ArticleListProps) => JSX.Element
     = ({articles, filters, setFilters, selectedManufacturers}) => {
@@ -28,7 +29,7 @@ const ArticleListWrapper: ({articles, selectedManufacturers, filters, setFilters
     }
 
     useEffect(() => {
-        paginate(1);
+        paginate(firstPage);
     }, [selectedManufacturers, pageSize]);
 
     return (

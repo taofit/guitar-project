@@ -1,6 +1,7 @@
 import styles from "../styles/pagination.module.css";
 import React, {useEffect, useState} from "react";
 import {Manufacturer} from "../types/types";
+import {firstPage} from "./articleListWrapper";
 
 interface PaginationProps {
     pageSize: number;
@@ -11,28 +12,29 @@ interface PaginationProps {
 
 const Pagination: ({pageSize, totalArticles, filters, paginate}: PaginationProps) => JSX.Element
     = ({pageSize, totalArticles, paginate, filters}) => {
-    const [currentPage, setCurrentPage] = useState(1);
+    const onePage = 1;
+    const [currentPage, setCurrentPage] = useState(firstPage);
     const totalPages = Math.ceil(totalArticles / pageSize);
     const gotoPage = (crement: number) => {
-        const nextPage = currentPage + crement;
-        setCurrentPage(nextPage);
-        paginate(nextPage);
+        const newPage = currentPage + crement;
+        setCurrentPage(newPage);
+        paginate(newPage);
     };
 
     useEffect(() => {
-        setCurrentPage(1);
+        setCurrentPage(firstPage);
     }, [filters, pageSize]);
 
-    if (totalPages <= 1) return <></>;
+    if (totalPages <= firstPage) return <></>;
 
     return (
         <ul className={styles.ul}>
             {
-                currentPage > 1 && <li onClick={() => gotoPage(-1)}>&lt; Prev</li>
+                currentPage > firstPage && <li onClick={() => gotoPage(-onePage)}>&lt; Prev</li>
             }
             <li className={styles.page}>{currentPage} of {totalPages}</li>
             {
-                currentPage < totalPages && <li onClick={() => gotoPage(1)}>Next &gt;</li>
+                currentPage < totalPages && <li onClick={() => gotoPage(onePage)}>Next &gt;</li>
             }
         </ul>
 
