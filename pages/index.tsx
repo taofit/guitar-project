@@ -16,25 +16,23 @@ const Home: (props: PropsInterface) => JSX.Element = (props: PropsInterface) => 
     const [articles, setArticles] = React.useState<Article[]>([]);
     const [selectedManufacturers, setSelectedManufacturers] = React.useState<string[]>([]);
 
-    const filterManufacturers = () => {
-        const manufacturers = filters.filter((item) => item.isSelected).map((item) => item.name);
-        setSelectedManufacturers(manufacturers);
-
-        return manufacturers;
-    };
-
-    const filterArticles = () => {
-        const manufacturers = filterManufacturers();
-        let filteredArticles;
-        if (manufacturers.length > 0) {
-            filteredArticles = props.articles.filter((item) => manufacturers.includes(item.manufacturer));
-        } else {
-            filteredArticles = props.articles;
-        }
-        setArticles(filteredArticles);
-    };
-
     React.useEffect(() => {
+        const filterManufacturers = () => {
+            const manufacturers = filters.filter((item) => item.isSelected).map((item) => item.name);
+            setSelectedManufacturers(manufacturers);
+
+            return manufacturers;
+        };
+        const filterArticles = () => {
+            const manufacturers = filterManufacturers();
+            let filteredArticles;
+            if (manufacturers.length > 0) {
+                filteredArticles = props.articles.filter((item) => manufacturers.includes(item.manufacturer));
+            } else {
+                filteredArticles = props.articles;
+            }
+            setArticles(filteredArticles);
+        };
         filterArticles();
     }, [filters]);
 
