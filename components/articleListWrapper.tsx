@@ -19,7 +19,6 @@ const ArticleListWrapper: ({articles, selectedManufacturers, filters, setFilters
     = ({articles, filters, setFilters, selectedManufacturers}) => {
     const [articlesInCurrentPage, setArticlesInCurrentPage] = useState<Article[]>([]);
     const [pageSize, setPageSize] = useState<number>(sizeOptions[0]);
-    const size = "300";
 
     const paginate = (pageNumber: number) => {
         const startPage = (pageNumber - 1) * pageSize;
@@ -35,7 +34,7 @@ const ArticleListWrapper: ({articles, selectedManufacturers, filters, setFilters
     return (
         <main className={`${styles.main} ${styles.columnRight}`}>
             <FilterSummary selectedManufacturers={selectedManufacturers} filters={filters} setFilters={setFilters}/>
-            <ArticleList articlesInCurrentPage={articlesInCurrentPage} size={size}/>
+            <ArticleList articlesInCurrentPage={articlesInCurrentPage} />
             <Pagination pageSize={pageSize} totalArticles={articles.length} paginate={paginate} filters={filters}/>
             <PageSize pageSize={pageSize} setPageSize={setPageSize}/>
         </main>

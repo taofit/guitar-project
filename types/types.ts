@@ -1,5 +1,3 @@
-import {number, string} from "prop-types";
-
 type Image = {
     "type": string;
     "file": string;

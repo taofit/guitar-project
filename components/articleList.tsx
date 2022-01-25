@@ -5,10 +5,10 @@ import React from "react";
 
 interface ArticleListProps {
     articlesInCurrentPage: Article[];
-    size: string;
 }
 
-const ArticleList: ({articlesInCurrentPage, size}: ArticleListProps) => JSX.Element = ({articlesInCurrentPage, size}) => {
+const ArticleList: ({articlesInCurrentPage}: ArticleListProps) => JSX.Element = ({articlesInCurrentPage}) => {
+    const imageSize = "300";
     const getDescription = (cleanText: string) => {
         const descriptionLength = 200;
         let description = cleanText;
@@ -26,7 +26,7 @@ const ArticleList: ({articlesInCurrentPage, size}: ArticleListProps) => JSX.Elem
 
                             return (
                                 <li className={styles.card} key={item.id}>
-                                    <Image src={`/images/${item.image.file}`} height={size} width={size} alt={item.name}/>
+                                    <Image src={`/images/${item.image.file}`} height={imageSize} width={imageSize} alt={item.name}/>
                                     <h3>{item.name}</h3>
                                     <p>{item.manufacturer}
                                         <Image src={`/images/${item.manufacturerData.image.file}`}
