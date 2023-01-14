@@ -6,7 +6,7 @@ import Header from "../components/header";
 import Filters from "../components/filters";
 import { Manufacturer, Article } from '../types/types';
 
-export interface PropsInterface {
+interface PropsInterface {
     manufacturers: Manufacturer[];
     articles: Article[];
 }
